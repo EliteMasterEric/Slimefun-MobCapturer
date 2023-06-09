@@ -48,7 +48,7 @@ public interface InventoryAdapter<T extends LivingEntity> {
         
         int itemCount = 0;
         for (Map.Entry<String, ItemStack> entry : inventory.entrySet()) {
-            if (entry.getValue().getType() == Material.AIR) continue;
+            if (entry.getValue() == null || entry.getValue().getType() == Material.AIR) continue;
 
             itemCount += 1;
         }

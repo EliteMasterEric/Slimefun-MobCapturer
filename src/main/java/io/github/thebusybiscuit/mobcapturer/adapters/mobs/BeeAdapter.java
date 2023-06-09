@@ -1,10 +1,13 @@
 package io.github.thebusybiscuit.mobcapturer.adapters.mobs;
 
+import java.util.List;
+
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.google.gson.JsonObject;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Bee;
 
 /**
@@ -16,6 +19,25 @@ public class BeeAdapter extends AnimalsAdapter<Bee> {
     public BeeAdapter() {
         super(Bee.class);
     }
+
+    @Nonnull
+    @Override
+    public List<String> getLore(@Nonnull JsonObject json) {
+        List<String> lore = super.getLore(json);
+
+        if (json.get("anger").getAsInt() > 0) {
+            lore.add(ChatColor.GRAY + "Angry: " + ChatColor.WHITE + "Yes");
+        }
+        if (json.get("nectar").getAsBoolean()) {
+            lore.add(ChatColor.GRAY + "Nectar: " + ChatColor.WHITE + "Yes");
+        }
+        if (json.get("stung").getAsBoolean()) {
+            lore.add(ChatColor.GRAY + "Stung: " + ChatColor.WHITE + "Yes");
+        }
+
+        return lore;
+    }
+
 
     @Override
     @ParametersAreNonnullByDefault
