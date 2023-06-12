@@ -33,6 +33,7 @@ import org.bukkit.entity.Silverfish;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.SkeletonHorse;
 import org.bukkit.entity.Slime;
+import org.bukkit.entity.Sniffer;
 import org.bukkit.entity.Spider;
 import org.bukkit.entity.Squid;
 import org.bukkit.entity.Stray;
@@ -51,6 +52,7 @@ import io.github.thebusybiscuit.mobcapturer.adapters.mobs.AllayAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.AnimalsAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.AxolotlAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.BeeAdapter;
+import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CamelAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CatAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.ChestedHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CreeperAdapter;
@@ -168,6 +170,9 @@ public final class Setup {
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
             registerMob(EntityType.FROG, new FrogAdapter(), "d2c3b98ada19957f8d83a7d42faf81a290fae7d08dbf6c1f8992a1ada44b31"); // not egg texture
         }
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_20)) {
+            registerMob(EntityType.SNIFFER, new AnimalsAdapter<>(Sniffer.class), "bae445d1392cb559a68b4f4401e1aa3ec5e7f9e89c0b62632bccf0ac3b41b4b");
+        }
 
         // Mobs
         registerMob(EntityType.SLIME, new SlimeAdapter<>(Slime.class), "9330af17f8512ed3b49e78bca7ef2d83f2dc1e598a8cb542ecc3b6becee9f57");
@@ -246,6 +251,11 @@ public final class Setup {
         registerMob(EntityType.SKELETON_HORSE, new UndeadHorseAdapter<>(SkeletonHorse.class), "9dc084b7874268973006c897a03d8906cc9b3df8c39bce93d87ec0df507bbe0d");
         registerMob(EntityType.LLAMA, new LlamaAdapter<>(Llama.class), "5cbc6bd92728d79cfa6d8f23cbae9d912f495920b9e95ef691a1967fef8a4453");
         registerMob(EntityType.TRADER_LLAMA, new LlamaAdapter<>(TraderLlama.class), "5cbc6bd92728d79cfa6d8f23cbae9d912f495920b9e95ef691a1967fef8a4453");
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_20)) {
+            // not egg texture
+            // TODO: Replace temporary texture with egg texture once minecraft-heads.com has one.
+            registerMob(EntityType.CAMEL, new CamelAdapter(), "74b8a333dfa92e7e5a95ad4ae2d84b1bafa33dc28c054925277f60e79dafc8c4");
+        }
 
         // Skeletons
         registerMob(EntityType.SKELETON, new SkeletonAdapter<>(Skeleton.class), "377055cadacbb0f8f35c1d18acc2ed86e0bcc6d73dda71e4c59f7ea28b7b27b6");
