@@ -74,11 +74,15 @@ public class ZombieVillagerAdapter extends ZombieAdapter<ZombieVillager> impleme
     public void apply(ZombieVillager entity, JsonObject json) {
         super.apply(entity, json);
 
-        Profession profession = Profession.valueOf(json.get("profession").getAsString());
-        entity.setVillagerProfession(profession);
+        if (json.get("profession") != null) {
+            Profession profession = Profession.valueOf(json.get("profession").getAsString());
+            entity.setVillagerProfession(profession);
+        }
 
-        Villager.Type biome = Villager.Type.valueOf(json.get("biome").getAsString());
-        entity.setVillagerType(biome);
+        if (json.get("biome") != null) {
+            Villager.Type biome = Villager.Type.valueOf(json.get("biome").getAsString());
+            entity.setVillagerType(biome);
+        }
         
         // Trades and gossip are applied by the NBTAdapter
 
