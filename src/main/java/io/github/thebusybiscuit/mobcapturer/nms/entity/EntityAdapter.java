@@ -20,8 +20,18 @@ public interface EntityAdapter {
         try {
             MinecraftVersion version = MinecraftVersion.get();
 
-            if (version.isAtLeast(1, 19, 4)) {
+            if (version.isAtLeast(1, 20)) {
+                return new EntityAdapter20();
+            } else if (version.isAtLeast(1, 19, 4)) {
                 return new EntityAdapter19v4();
+            } else if (version.isAtLeast(1, 19, 3)) {
+                return new EntityAdapter19v3();
+            } else if (version.isAtLeast(1, 19, 2)) {
+                return new EntityAdapter19v2();
+            } else if (version.isAtLeast(1, 19, 1)) {
+                return new EntityAdapter19v1();
+            } else if (version.isAtLeast(1, 19, 0)) {
+                return new EntityAdapter19v0();
             } else {
                 // Old mappings
                 throw new NotImplementedException("Not implemented yet");
